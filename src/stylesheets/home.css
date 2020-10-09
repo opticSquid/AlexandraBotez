@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#jumbotron-image
+{
+    margin-top: 4%;
+}
+.title
+{
+    text-align: center;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 3em;
+    color: rgb(252,191,7);
+}
+.subtitle
+{
+    text-align: center;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 3em;
+}
+.trend-image
+{
+    margin-bottom: 1%;
+}
+.footer
+{
+    background: black;
+    color: lightgrey;
+    text-align: center;
+}
+.social
+{
+    margin-right: 1%;
+}
+@media only screen and (max-width: 576px) {
+    #jumbotron-image
+    {
+        margin-top: 15%;
+    }
+    #t1
+    {
+        text-align: right;
+    }
+}
