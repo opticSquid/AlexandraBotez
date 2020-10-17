@@ -7,15 +7,37 @@ import {
   Nav,
   NavItem
 } from 'reactstrap';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
 import Home from "./home";
 import Cart from "./cart";
 import Collections from "./collections";
 import Order from "./order";
+import IMGS from "./img_database";
+import Price from "./price page";
+
+
 const Header = () =>
 {
     const [isOpen,setIsOpen] = useState(false)
-    const toggle = () => setIsOpen(!isOpen)
+    const toggle = () => setIsOpen(!isOpen);
+    // const PriceWithID = ({match}) =>
+    // {
+    //     let test = Object.entries(match);
+    //     let test2 = test.filter(([prop])=>(prop === 'params'));
+    //     let test3 = test2[0][1];
+    //     let test4 = Object.values(test3)[0]
+    //     return(
+    //       <Price image={IMGS.filter((i)=>(i.id === parseInt(test4,10)))[0]}/>
+    //     );
+    // }
+    // If everything breaks this method above will work
+    const PriceWithID = ({match}) =>
+    {
+        return(
+          <Price image={IMGS.filter((i)=>(i.id === parseInt(match.params.pId,10)))[0]}/>
+        );
+    }
+
     return(
         <Router>
             <React.Fragment>
@@ -25,25 +47,29 @@ const Header = () =>
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <Link to={"/"} className="nav-link" >Home</Link>
+                                <NavLink to="/home" className="nav-link" >Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <Link to={"/cart"} className="nav-link" >Cart</Link>
+                                <NavLink to="/cart" className="nav-link" >Cart</NavLink>
                             </NavItem>
                             <NavItem>
-                                <Link to={"/collections"} className="nav-link">Collections</Link>
+                                <NavLink to="/collections" className="nav-link">Collections</NavLink>
                             </NavItem>
                             <NavItem>
-                                <Link to={"/orders"} className="nav-link">Orders</Link>
+                                <NavLink to="/orders" className="nav-link">Orders</NavLink>
                             </NavItem>
                     </Nav>
                     </Collapse>
                </Navbar>
                 <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Route  path="/Cart" component={Cart}/>
-                    <Route  path="/Collections" component={Collections}/>
-                    <Route  path="/Orders" component={Order} />
+                    <Route path="/home" component={()=><Home product={IMGS}/>}/>
+                    <Route  path="/cart" component={Cart}/>
+                    <Route exact path="/collections" component={()=><Collections product={IMGS}/>}/>
+                    <Route path='/collections/:pId' component={PriceWithID} />
+                    <Route exact path="/orders" component={Order} />
+                    <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
                 </Switch>
             </React.Fragment>
         </Router>

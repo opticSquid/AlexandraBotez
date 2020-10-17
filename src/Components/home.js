@@ -1,9 +1,9 @@
 import React from "react";
 import background from "../img/home wall.jpg";
 import "../stylesheets/home.css";
-import IMGS from "./img_database";
 import {Container,Row, Col} from "reactstrap";
-const Home = () =>
+import {Link} from "react-router-dom";
+const Home = (props) =>
 {
     let randintg = () =>
     {
@@ -14,7 +14,7 @@ const Home = () =>
         );
     }
     const imgid = randintg();
-    const imgFilter =  IMGS.filter((img)=>img.id>=imgid && img.id<(imgid+8));
+    const imgFilter =  props.product.filter((img)=>img.id>=imgid && img.id<(imgid+8));
     return(
         <Container>
             <Row>
@@ -31,7 +31,9 @@ const Home = () =>
                           {
                               return(
                                   <Col sm="3" xs="12" key={imgs.id} className="trend-image">
-                                      <img  src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                      <Link to={`/Collections/${imgs.id}`}>
+                                        <img  src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                      </Link>
                                   </Col>
                               )
                           }

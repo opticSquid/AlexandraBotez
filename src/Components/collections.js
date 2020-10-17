@@ -2,12 +2,13 @@ import React from "react";
 import {Container,Row, Col} from "reactstrap";
 import "../stylesheets/home.css";
 import colwall from "../img/hindu wall.jpg";
-import IMGS from "./img_database";
 import Slider from "./autoslider";
-const Collections = () =>
+import {Link} from "react-router-dom";
+
+const Collections = (props) =>
 {
-    const menimgmap = IMGS.filter((img)=>img.id>=17 && img.id<25);
-    const womenimgmap = IMGS.filter((img)=>img.id>=28 && img.id<36);
+    const menimgmap = props.product.filter((img)=>img.id>=17 && img.id<25);
+    const womenimgmap = props.product.filter((img)=>img.id>=28 && img.id<36);
     return(
         <Container>
             <Row>
@@ -24,7 +25,9 @@ const Collections = () =>
                         {
                             return(
                                 <Col key={imgs.id} sm="3" xs="12" className="trend-image">
-                                    <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                    <Link to={`/Collections/${imgs.id}`}>
+                                        <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                    </Link>
                                 </Col>
                             )
                         }
@@ -47,7 +50,9 @@ const Collections = () =>
                         {
                             return(
                                 <Col key={imgs.id} sm="3" xs="12" className="trend-image">
-                                    <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                    <Link to={`/Collections/${imgs.id}`}>
+                                        <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                    </Link>
                                 </Col>
                             )
                         }
