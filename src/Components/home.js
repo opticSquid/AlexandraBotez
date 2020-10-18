@@ -7,8 +7,8 @@ const Home = (props) =>
 {
     let randintg = () =>
     {
-        const min=17;
-        const max=27;
+        const min=1;
+        const max=10;
         return (
             Math.floor(Math.random() * (+max - +min) + +min)
         );
@@ -32,7 +32,7 @@ const Home = (props) =>
                               return(
                                   <Col sm="3" xs="12" key={imgs.id} className="trend-image">
                                       <Link to={`/Collections/${imgs.id}`}>
-                                        <img  src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                        <img  src={imgs.path} alt={imgs.name} className="img-fluid" />
                                       </Link>
                                   </Col>
                               )

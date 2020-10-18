@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 
 const Collections = (props) =>
 {
-    const menimgmap = props.product.filter((img)=>img.id>=17 && img.id<25);
-    const womenimgmap = props.product.filter((img)=>img.id>=28 && img.id<36);
+    const menimgmap = props.product.filter((img)=>img.id>=1 && img.id<8);
+    const womenimgmap = props.product.filter((img)=>img.id>=8 && img.id<19);
     return(
         <Container>
             <Row>
@@ -24,9 +24,9 @@ const Collections = (props) =>
                     menimgmap.map((imgs)=>
                         {
                             return(
-                                <Col key={imgs.id} sm="3" xs="12" className="trend-image">
+                                <Col key={imgs.id} sm="4" xs="12" className="trend-image">
                                     <Link to={`/Collections/${imgs.id}`}>
-                                        <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                        <img src={imgs.path} alt={imgs.name} className="img-fluid" />
                                     </Link>
                                 </Col>
                             )
@@ -49,9 +49,9 @@ const Collections = (props) =>
                     womenimgmap.map((imgs)=>
                         {
                             return(
-                                <Col key={imgs.id} sm="3" xs="12" className="trend-image">
+                                <Col key={imgs.id} sm="4" xs="12" className="trend-image">
                                     <Link to={`/Collections/${imgs.id}`}>
-                                        <img src={imgs.path} alt={imgs.id} className="img-fluid" />
+                                        <img src={imgs.path} alt={imgs.name} className="img-fluid" />
                                     </Link>
                                 </Col>
                             )
